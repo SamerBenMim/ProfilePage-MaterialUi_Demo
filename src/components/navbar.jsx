@@ -1,6 +1,6 @@
 import { Pets,Mail,Notifications } from '@mui/icons-material'
-import { AppBar,Box,Typography,styled,Toolbar, InputBase, Icon, Badge, Avatar, } from '@mui/material'
-import React from 'react'
+import { AppBar,Menu,Box,Typography,styled,Toolbar, InputBase, Icon, Badge, Avatar, MenuItem, } from '@mui/material'
+import React, { useState } from 'react'
 
 const StyledToolBar = styled(Toolbar)({
     display : "flex",
@@ -16,6 +16,8 @@ const Icons = styled(Box)(({theme}) => ({
     display : "none",
     gap:"20px",
     alignItems : "center",
+    cursor : "pointer",
+
     [theme.breakpoints.up("sm")] : {
         display : "flex",
     }
@@ -24,11 +26,13 @@ const UserBox = styled(Box)(({theme}) => ({
     display : "flex",
     gap:"10px",
     alignItems : "center",
+    cursor : "pointer",
     [theme.breakpoints.up("sm")] : {
         display : "none",
     }
 }))
-const navbar = () => {
+const Navbar = () => {
+  const [open, setOpen] = useState(false);
   return (
     <AppBar position='sticky'>
         <StyledToolBar>
@@ -46,15 +50,34 @@ const navbar = () => {
                 <Badge badgeContent={4} color="error">
                     <Notifications />
                 </Badge>
-                <Avatar sx={{width:30, height:30}} src=""></Avatar>
+                <Avatar sx={{width:30, height:30}} src=""  onClick= {e=>setOpen(true)}></Avatar>
             </Icons>
             <UserBox>
-                 <Avatar sx={{width:30, height:30}} src=""></Avatar>
+                 <Avatar sx={{width:30, height:30}} src=""  onClick= {e=>setOpen(true)}></Avatar>
                  <Typography variant="span">Samer</Typography>
             </UserBox>
         </StyledToolBar>
+        <Menu sx={{marginTop:4}}
+        id="demo-positioned-menu"
+        aria-labelledby="demo-positioned-button"
+        // anchorEl={anchorEl}
+        open={open}
+        onClose={()=>{setOpen(false)}}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+      >
+        <MenuItem >Profile</MenuItem>
+        <MenuItem >My account</MenuItem>
+        <MenuItem >Logout</MenuItem>
+      </Menu>
     </AppBar>
   )
 }
 
-export default navbar
+export default Navbar
