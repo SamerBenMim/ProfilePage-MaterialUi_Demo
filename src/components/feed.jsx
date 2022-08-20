@@ -1,10 +1,17 @@
-import { Box } from '@mui/system'
-import React from 'react'
 
-const feed = () => {
-  return (
-    <Box bgcolor="skyblue" flex={4} p={2}>feed</Box>
-  )
+import { Box } from '@mui/system'
+import React, { useState } from 'react'
+import Posts from './posts';
+const Feed = () => {
+    const [expanded, sethandleExpandClick] = useState(false)
+    return (
+      <Box flex={4} p={2} alignItems="center"  sx={{justifyContent:"center" , alignItems:"center"}}>
+        <Posts />
+        <Posts />
+        <Posts />
+        <Posts />
+      </Box>
+    )
 }
 
-export default feed
+export default Feed
